@@ -80,7 +80,8 @@ ui <- fluidPage(
                                                selected = c("Page.total.likes", "Lifetime.Post.Total.Reach")),
                                 strong("Do not select the color variable within the plot variables."),
                                 br(),br(),
-                                selectInput("parallel_color", "Select color variable", factor_names))
+                                selectInput("parallel_color", "Select color variable", factor_names),
+                                sliderInput("spline", "Change spline factor", 0, 10, 0, 1))
   ),
   
   mainPanel(
@@ -168,7 +169,7 @@ server <- function(input, output, session) {
     
     ggparcoord(facebook, columns = which(colnames(facebook) %in% input$parallel_cols),
                groupColumn = which(colnames(facebook) == input$parallel_color),
-               scale = "uniminmax", showPoints = T) +
+               scale = "uniminmax", showPoints = T, splineFactor = input$spline) +
       theme_bw() +
       theme(axis.title.y = element_blank(),
             axis.ticks.y = element_blank(),
