@@ -10,10 +10,6 @@ if(!"reshape2" %in% rownames(installed.packages())){
   install.packages("reshape2", dependencies = T)
 }
 library("reshape2")
-if(!"lubridate" %in% rownames(installed.packages())){
-  install.packages("lubridate", dependencies = T)
-}
-library("lubridate")
 if(!"GGally" %in% rownames(installed.packages())){
   install.packages("GGally", dependencies = T)
 }
